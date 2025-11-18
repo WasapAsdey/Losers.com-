@@ -1,0 +1,127 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; }
+
+@font-face {
+font-family: 'MetalEvent';
+src: url('MetalEvent.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+body {
+  background: #0b0b0b;
+  color: #fff;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+header {
+  width: min(1100px, 95%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  font-weight: 800;
+  letter-spacing: 6px;
+  font-size: 120px;
+  transform: skewX(-10deg);
+  text-transform: uppercase;
+  font-family: 'MetalEvent', sans-serif;
+  
+}
+
+.intro {
+  max-width: 600px;
+  text-align: left;
+  font-size: 14px;
+  opacity: 0.9;
+  padding-left: 8px;
+}
+
+main {
+  width: min(1100px, 95%);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.hero {
+  grid-column: 1 / -1;
+  background: rgba(255,255,255,0.02);
+  border: 2px solid rgba(255,255,255,0.12);
+  padding: 30px;
+  min-height: 200px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  border: 2px solid #fff;
+  padding: 28px;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px) rotate(-1deg);
+  background: rgba(255,255,255,0.06);
+}
+
+.grid-cards {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.content-large {
+  border: 2px dashed rgba(255,255,255,0.12);
+  min-height: 260px;
+  padding: 20px;
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  font-size: 20px;
+}
+
+.social {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social a {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+  border: 2px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.02);
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+
+@media (max-width: 900px) {
+  main { grid-template-columns: 1fr; }
+  .hero { grid-column: 1 / -1; }
+}
