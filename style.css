@@ -1,5 +1,7 @@
 /* Reset */
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
 
 html, body { height: 100%; }
 
@@ -9,75 +11,69 @@ html, body { height: 100%; }
   src: url('MetalEvent.ttf') format('truetype');
 }
 
-/* ======== FONDO CON GRAIN ======== */
-
 body {
-  background: #000;
-  color: #fff;
-  font-family: "Segoe UI", sans-serif;
+  background-image: url("fondo-Pag.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #ffffff;
+  font-family: 'MetalEvent', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px;
-  position: relative;
+  padding: 48px;
   overflow-x: hidden;
+  position: relative;
 }
-
-/* Grain overlay */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.08;
-  z-index: 1;
-}
-
-/* ======== LÍNEAS LATERALES METALCORE ======== */
-
-.side-lines::before,
-.side-lines::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  height: 100vh;
-  width: 0.5px;
-  background: rgba(255,255,255,0.12);
-  z-index: 0;
-}
-
-.side-lines::before { left: 10%; }
-.side-lines::after { right: 10%; }
-
-/* ======== HEADER ======== */
 
 header {
   text-align: center;
   padding: 20px;
   position: relative;
-  z-index: 2;
+  z-index: 2; 
 }
 
 .logo img {
-  width: 180px;
-  height: auto;
-  filter: drop-shadow(0 0 6px rgba(255,255,255,0.35));
+  width: 220px;             
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 24px #a00101) drop-shadow(0 0 48px #880000); /* aura rojo */
+  will-change: transform;
+  animation: floatLogo 4s ease-in-out infinite, logoPulse 3.5s ease-in-out infinite;
+  z-index: 2;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@keyframes logoPulse {
+  0% { transform: scale(1); }
+  20% { transform: scale(1.16); }
+  50% { transform: scale(1); }
+  80% { transform: scale(1.30); }
+  100% { transform: scale(1); }
+}
+
+.logo img:hover {
+  transform: translateY(-8px) scale(1.02);
+  filter: drop-shadow(0 0 22px rgba(255,255,255,0.55));
+}
+
+@keyframes floatLogo {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
 }
 
 .intro {
   max-width: 600px;
   margin: 16px auto;
-  font-size: 15px;
+  font-size: 35px;
   opacity: 0.9;
   line-height: 1.4;
+  z-index: 2;
 }
 
 /* ======== BOTONES CENTRALES ======== */
-
 .menu-central {
   display: flex;
   flex-direction: column;
@@ -90,40 +86,42 @@ header {
   z-index: 2; /* encima del grain */
 }
 
-/* Grain flicker */
-@keyframes grain-flicker {
-  0% { filter: contrast(100%) brightness(100%); }
-  50% { filter: contrast(105%) brightness(105%); }
-  100% { filter: contrast(100%) brightness(100%); }
-}
-
 .card {
-  border: 0.15px solid white;
-  padding: 25px;
+  border: 2px solid rgba(180,180,180,0.5);
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(3px);
+  padding: 30px 40px;
   text-align: center;
-  font-size: 36px;
+  font-size: 50px;
   font-family: 'MetalEvent', sans-serif;
   color: white;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.25s ease;
-  position: relative;
-  z-index: 2;
-
-  width: 532px;
+  width: 760px;
   max-width: calc(100% - 48px);
-  box-sizing: border-box;
+  transition: border 0.3s, box-shadow 0.25s, color 0.25s;
+  position: relative;
+  background-image: url("textura.webp");
+  background-size: cover;
+  background-blend-mode: overlay;
+  box-shadow: 0 0 14px rgba(255,255,255,0.08), inset 0 0 24px 2px #000000cc;
 }
 
 .card:hover {
-  background-color: white;
-  color: black;
-  border-color: white;
-  transform: translateY(-6px) scale(1.02);
-  animation: grain-flicker 0.2s steps(2) forwards;
+  background: #fff;
+  color: #000;
+  border: 2px solid #ffffff;
+  animation: plateShake 0.15s ease-out;
+  scale: 1.03;
+  box-shadow: 0 0 24px 6px #a00101, 0 0 48px 12px #a00000;
 }
 
-/* ======== ICONOS SOCIALES ======== */
+@keyframes plateShake {
+  0% { transform: translateX(0); }
+  33% { transform: translateX(-1px); }
+  66% { transform: translateX(1.5px); }
+  100% { transform: translateX(0); }
+}
 
 .social {
   position: fixed;
@@ -139,15 +137,15 @@ header {
   width: 38px;
   height: 38px;
   object-fit: contain;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .social img:hover {
   transform: scale(1.18);
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.25));
 }
 
 /* ======== RESPONSIVE ======== */
-
 @media (max-width: 600px) {
   .card {
     width: auto;

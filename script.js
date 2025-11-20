@@ -32,3 +32,5 @@ document.getElementById('card-otro').addEventListener('click', () => {
 });
 
 console.log("JS cargado correctamente.");
+
+
